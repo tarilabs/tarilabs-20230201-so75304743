@@ -19,6 +19,10 @@ public class Measurement {
         return val;
     }
 
+    public void setVal(final String val) {
+        this.val = val;
+    }
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
