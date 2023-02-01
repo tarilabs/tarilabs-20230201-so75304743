@@ -5,10 +5,12 @@ unit MeasurementUnit;
 
 rule "will execute per each Measurement having ID color"
 when
-	$measure: /measurements[ id == "color", $colorVal : val ]
+	$measure: /measurements[ id == "color", $colorVal : val != "BS" ]
 then
 	controlSet.add($colorVal);
-	$measure.setVal("BS");
+	modify( $measure ) {
+		setVal( "BS" )
+	}
 end
 
 query FindColor

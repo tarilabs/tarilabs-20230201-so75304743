@@ -1,17 +1,16 @@
 
 package org.drools;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.List;
 
-import org.drools.ruleunits.api.RuleUnitProvider;
 import org.drools.ruleunits.api.RuleUnitInstance;
+import org.drools.ruleunits.api.RuleUnitProvider;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static java.util.stream.Collectors.toList;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class RuleTest {
 
@@ -36,6 +35,8 @@ public class RuleTest {
             assertTrue("contains red", measurementUnit.getControlSet().contains("red"));
             assertTrue("contains green", measurementUnit.getControlSet().contains("green"));
             assertTrue("contains blue", measurementUnit.getControlSet().contains("blue"));
+
+            assertTrue( queryResult.stream().map(Measurement::getVal).allMatch("BS"::equals) );
         } finally {
             instance.close();
         }
